@@ -23,7 +23,17 @@ If you find this work useful, please cite our paper and give us a shining star ð
 We introduce cost-aware RAG, a setting where retrieved evidence is assigned access-cost tiers and systems must answer under an explicit evidence-access budget. We instantiate this setting by augmenting MS MARCO v2.1 with access-friction tiers and evaluate budgeted evidence selection across general-domain and domain-specific QA benchmarks.
 
 # Set Up
+**Use `git clone` to download this project**
+```
+git clone https://github.com/Mignonmy/Cost-Aware.git
+cd Cost-Aware
+```
 
+**use the virtual environment management packages**
+
+```
+conda env create -n Cost-Aware -f cost_aware_environment.yml
+```
 
 
 # Prepare Data
