@@ -31,6 +31,13 @@ chmod +x script_command_batch_agent_llama.sh
 script_command_batch_agent_llama.sh
 ```
 
+# Pre Processing
+Since we've already retrieved documents from the corpus, so we split the retrieved documents by tiers and provide the documents to agent according to the tiers that agent decided.
+Take Hotpotqa dataset as example, run the following command for document split:
+```
+python Agent/split_retrieval_by_tier.py --input_jsonl test_dataset/retrieved_result_on_marco_textbooks/hotpotqa_mini_retrieved.jsonl --docid_tier_mapping corpus/meta_data/docid_tier_mapping_addtextbooks.json --output_jsonl Agent/tier_split_result/hotpotqa_mini_tier_split.jsonl
+```
+Also, you could find the uploaded data at Agent/tier_split_result.
 
 # Post Processing and Evaluations:
 
