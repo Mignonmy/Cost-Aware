@@ -4,7 +4,8 @@ Source code for our paper:\
 
 Click the link below to view our papers:
 
-<a href='https://www.arxiv.org/2606.02245'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+<a href='https://www.arxiv.org/2606.02245'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://huggingface.co/'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-MetaData-blue'></a>
+
 
 If you find this work useful, please cite our paper and give us a shining star 🌟
 ```
@@ -37,12 +38,12 @@ conda env create -n Cost-Aware -f cost_aware_environment.yml
 
 
 # Prepare Data
-## Corpus
+## 1️⃣ Corpus
 For general corpus, we use [MSMARCOv2.1](https://trec-rag.github.io/annoucements/2024-corpus-finalization/) (Segmented version).
 For domain-specific corpus, we use [Textbooks](https://huggingface.co/datasets/MedRAG/textbooks).
 Put it in corpus/data folder.
 
-## Test Dataset
+## 2️⃣ Test Dataset
 For general datasets, we use [KILT](https://github.com/facebookresearch/KILT).
 For domain-specific datasets, we use [MedQA-US and MMLU-Med](https://github.com/gzxiong/MIRAGE).
 Put it in test_dataset folder.
@@ -56,36 +57,36 @@ Put the retrieved result in test_dataset/retrieved_result_on_marco_textbooks fol
 
 
 # Corpus Annotation
-Extract domain from url
+1) Extract domain from url
 ```
 python corpus/data/domain_analysis.py
 ```
 
-Classify top20K domains using GPT
+2) Classify top20K domains using GPT
 ```
 python corpus/data/corpus_division_newtiertable.py
 ```
 
-Assign long tail domain based on proportion observed in top20K domains
+3) Assign long tail domain based on proportion observed in top20K domains
 ```
 python corpus/data/classification_analysis.py
 ```
 
-Merge tier 2 and 3
+4) Merge tier 2 and 3
 ```
 python corpus/data/merge_tier_and_stats.py
 ```
 
-Construct the meta data of the corpus, including docid_domain_mapping and docid_tier_mapping
+5) Construct the meta data of the corpus, including docid_domain_mapping and docid_tier_mapping
 ```
 python corpus/data/domain_docid_mapping.py
 python corpus/data/generate_docid_tier_mapping.py
 ```
-Add domain-specific corpus to tier 2
+6) Add domain-specific corpus to tier 2
 ```
 python corpus/data/add_new_corpus_docids_to_tier2.py --existing_mapping corpus/meta_data/docid_tier_mapping.json --new_docids path_to_textbooks --output corpus/meta_data/docid_tier_mapping_addtextbooks.json
 ```
-Also, you could download the constructed meta-data from [here]().
+Also, you could download the constructed meta-data from the huggingface link provided above.
 
 
 # RAG Experiment
