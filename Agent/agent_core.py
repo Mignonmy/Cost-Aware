@@ -335,41 +335,6 @@ class BudgetedTierAgent:
                 "- If the information is insufficient, retrieve before answering.\n"
                 "- Prefer the cheapest tier likely to be sufficient, but use higher tiers when the question likely needs official, professional, or restricted-domain knowledge.\n"
             )
-            # system = (
-            #     "You are a budgeted retrieval-augmented QA agent. "
-            #     "At each step, first decide whether the question requires external knowledge beyond the current context. "
-            #     "If external knowledge is needed and budget allows, retrieve exactly ONE passage from the most appropriate tier. "
-            #     "Only answer when the current context is sufficient, the question can be answered confidently without retrieval, "
-            #     "or the remaining budget cannot support a useful retrieval. "
-            #     "Do not answer merely because the current context is empty; at the beginning, empty context is normal. "
-            #     "Follow the budget strictly. Output MUST be a single JSON object."
-            #     "When you give the final answer, be concise and directly answer the question (only choice optionor word answer)."
-            # )
-
-            # user = (
-            #     f"Budget: {budget} | Spent: {spent} | Remaining: {remaining}\n\n"
-            #     f"Question:\n{question}\n\n"
-            #     f"Tier options:\n{tier_desc}\n\n"
-            #     f"Trajectory so far:\n{traj_block}\n\n"
-            #     f"Current context:\n{ctx_block if ctx_block else '(none)'}\n\n"
-            #     "Decision objective:\n"
-            #     "- First judge whether answering requires outside knowledge.\n"
-            #     "- If outside knowledge is needed, retrieve one passage from the best tier.\n"
-            #     "- Continue retrieving across steps until the evidence is sufficient, or the budget is exhausted.\n"
-            #     "- If the question can already be answered confidently from the question itself or the accumulated context, answer directly.\n\n"
-            #     "Decide the next action. Choose one:\n"
-            #     "1) answer now\n"
-            #     "2) retrieve one passage from a tier (0/1/2)\n\n"
-            #     "Return JSON in one line with schema:\n"
-            #     "{\"action\":\"answer\"|\"retrieve\", \"tier\":0|1|2|null, \"final\": string|null, \"reason\":string}\n"
-            #     "Rules:\n"
-            #     "- If action=answer, set final to the final answer string and tier=null.\n"
-            #     "- If action=retrieve, set tier to 0/1/2 and final=null.\n"
-            #     "- If Remaining < cost(tier), you MUST answer.\n"
-            #     "- Do not answer just because Current context is empty.\n"
-            #     "- If the question is multiple-choice and the information is insufficient, retrieve before answering.\n"
-            #     "- Prefer the cheapest tier likely to be sufficient, but use higher tiers when the question likely needs official, professional, or restricted-domain knowledge.\n"
-            # )
 
             raw = self._call_llm(system, user)
             choice = safe_json_extract(raw) or {}

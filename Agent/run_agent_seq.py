@@ -18,13 +18,7 @@ def parse_budget(x):
 
     return int(x)
 
-def normalize_budget(budget):       # HAN: FIXME
-    """
-    Han:
-    Convert parsed budget into a value that agent.run_one can safely use.
-    math.inf cannot be converted with int(math.inf), so we map it to
-    a very large integer.
-    """
+def normalize_budget(budget): 
     if isinstance(budget, float) and math.isinf(budget):
         return 10**18
     return int(budget)
@@ -35,7 +29,7 @@ def parse_args():
     ap.add_argument("--tiered_retrieval_jsonl", required=True, help="Tiered retrieval jsonl produced by tiering script")
     ap.add_argument("--output_jsonl", required=True)
 
-    ap.add_argument("--model_path", default="/home/yanghn/m/pretrained_models/Qwen3-8B")
+    ap.add_argument("--model_path", default="")
     ap.add_argument("--gpu_memory_utilization", type=float, default=0.4)
 
     ap.add_argument("--budget", type=parse_budget, default=20, help="Budget per question")
@@ -131,8 +125,7 @@ def main():
             if not qid:
                 raise KeyError("Missing id in input_jsonl")
             budget = normalize_budget(args.budget)
-            # result = agent.run_one(qid=qid, question=str(question), budget=int(args.budget), store=store) # HAN: FIXME
-            result = agent.run_one(qid=qid, question=str(question), budget=budget, store=store)             # HAN: FIXME
+            result = agent.run_one(qid=qid, question=str(question), budget=budget, store=store) 
             result["prediction"] = extract_boxed_answer(result.get("prediction", ""))
             result["dataset_name"] = obj.get("dataset_name") or default_dataset_name
             result["ground_truth"] = extract_ground_truth(obj)

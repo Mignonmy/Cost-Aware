@@ -23,7 +23,7 @@ def parse_args():
     ap.add_argument("--tiered_retrieval_jsonl", required=True, help="Tiered retrieval jsonl produced by tiering script")
     ap.add_argument("--output_jsonl", required=True)
 
-    ap.add_argument("--model_path", default="/home/yanghn/m/pretrained_models/Qwen3-8B")
+    ap.add_argument("--model_path", default="")
     ap.add_argument("--gpu_memory_utilization", type=float, default=0.4)
 
     ap.add_argument("--batch_size", type=int, default=5, help="Number of questions per shared-budget batch")
@@ -164,7 +164,6 @@ def build_allocation_prompt(
         "- Include every id exactly once.\n"
         "- Each budget must be a non-negative integer within the per-question bounds.\n"
         "- The sum of all budgets must equal the total shared budget.\n"
-        "- Please remember, if you allocate budget with 0, this question can not retrieve from external sources.\n"
         "- Budget is spent only by retrieval; unused budget may remain after the downstream agent answers.\n\n"
         "Return the final allocation as plain text, not JSON. Use exactly this TSV block format:\n"
         "BEGIN_BUDGET_ALLOCATION\n"

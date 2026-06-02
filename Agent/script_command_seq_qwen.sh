@@ -8,6 +8,7 @@ python Agent/run_agent.py \
     --output_jsonl Agent/result_optimized/hotpotqa_mini_output.jsonl \
     --max_steps 30 \
     --max_tokens 8192 \
+    --model_path 
 
 echo "===== NQ Dataset ====="
 python Agent/run_agent.py \
@@ -15,7 +16,8 @@ python Agent/run_agent.py \
     --tiered_retrieval_jsonl Agent/tier_split_result/nq_mini_tier_split.jsonl \
     --output_jsonl Agent/result_optimized/nq_mini_output.jsonl \
     --max_steps 30 \
-    --max_tokens 8192
+    --max_tokens 8192 \
+    --model_path 
 
 echo "===== Triviaqa Dataset ====="
 python Agent/run_agent.py \
@@ -23,7 +25,8 @@ python Agent/run_agent.py \
     --tiered_retrieval_jsonl Agent/tier_split_result/triviaqa_mini_tier_split.jsonl \
     --output_jsonl Agent/result_optimized/triviaqa_mini_output.jsonl \
     --max_steps 30 \
-    --max_tokens 8192
+    --max_tokens 8192 \
+    --model_path 
 
 echo "===== MMLU Dataset ====="
 python Agent/run_agent.py \
@@ -31,7 +34,8 @@ python Agent/run_agent.py \
     --tiered_retrieval_jsonl Agent/tier_split_result/mmlu_mini_tier_split.jsonl \
     --output_jsonl Agent/result_optimized/mmlu_mini_output.jsonl \
     --max_steps 30 \
-    --max_tokens 8192
+    --max_tokens 8192 \
+    --model_path 
 
 echo "===== Medqa Dataset ====="
 python Agent/run_agent.py \
@@ -39,4 +43,5 @@ python Agent/run_agent.py \
     --tiered_retrieval_jsonl Agent/tier_split_result/medqa_mini_tier_split.jsonl \
     --output_jsonl Agent/result_optimized/medqa_mini_output.jsonl \
     --max_steps 30 \
-    --max_tokens 8192
+    --max_tokens 8192 \
+    --model_path 

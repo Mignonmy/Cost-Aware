@@ -79,33 +79,6 @@ def is_option_qa_item(item: dict) -> bool:
     return gt in {"A", "B", "C", "D", "E"}
 
 
-# def evaluate_prediction(item: dict) -> dict:
-#     pred = item.get("prediction", "")
-#     gt = item.get("ground_truth", "")
-
-#     if is_medmcqa_item(item) or is_option_qa_item(item):
-#         gt_option = str(item.get("ground_truth_option") or gt or "").strip().upper()
-#         pred_option = extract_option_label(pred)
-#         correct = float(pred_option == gt_option and gt_option != "")
-#         empty = float(pred_option == "")
-#         return {
-#             "em": correct,
-#             "f1": correct,
-#             "empty": empty,
-#             "pred_option": pred_option,
-#             "gt_option": gt_option,
-#             "metric_type": "option_match",
-#         }
-
-#     return {
-#         "em": exact_match_score(pred, gt),
-#         "f1": f1_score(pred, gt),
-#         "empty": float(normalize_answer(pred) == ""),
-#         "pred_option": "",
-#         "gt_option": "",
-#         "metric_type": "qa_em_f1",
-#     }
-
 def evaluate_prediction(item: dict) -> dict:
     pred = item.get("prediction", "")
     gt = item.get("ground_truth", "")
