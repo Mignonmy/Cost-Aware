@@ -1,4 +1,3 @@
-name: hanyang_env_py310
 channels:
   - defaults
   - conda-forge
@@ -333,4 +332,3 @@ dependencies:
       - yarl==1.22.0
       - zipp==3.23.0
       - zlib-state==0.1.12
-prefix: /home/yanghn/miniconda3/envs/hanyang_env_py310
