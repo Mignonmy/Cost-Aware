@@ -36,6 +36,25 @@ cd Cost-Aware
 conda env create -n Cost-Aware -f cost_aware_environment.yml
 ```
 
+
+# Prepare Data
+## 1️⃣ Corpus
+For general corpus, we use [MSMARCOv2.1](https://trec-rag.github.io/annoucements/2024-corpus-finalization/) (Segmented version).
+For domain-specific corpus, we use [Textbooks](https://huggingface.co/datasets/MedRAG/textbooks).
+Put it in corpus/data folder.
+
+## 2️⃣ Test Dataset
+For general datasets, we use [KILT](https://github.com/facebookresearch/KILT).
+For domain-specific datasets, we use [MedQA-US and MMLU-Med](https://github.com/gzxiong/MIRAGE).
+Put it in test_dataset folder.
+In our experiments, we randomly sample 100 for each dataset, and we provide the sampling script in test_dataset/mini_datasets/sample_dataset_100.py , also you could find the uploaded data at test_dataset/mini_datasets.
+
+
+
+# Build Corpus Index
+We recommand using [RetServe](https://github.com/xhd0728/RetServe) to build embedding index. And follow the instruction in RetServe to construct the jsonl data, build embedding index and retrieve documents.
+Put the retrieved result in test_dataset/retrieved_result_on_marco_textbooks folder. Also, you could find the uploaded data at test_dataset/retrieved_result_on_marco_textbooks.
+
  
 # Corpus Annotation
 1) Extract domain from url
